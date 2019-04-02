@@ -1,0 +1,3 @@
+packages that i need to install
+1. lsb-core : i need it to know the warning of lsb_release result
+2. 
