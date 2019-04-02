@@ -7,14 +7,14 @@ If you want to find more information about this repository,  visit https://githu
 Author: Marin Grabovschi    https://github.com/salomondeep
 Autopsy: https://www.sleuthkit.org/autopsy/
 
-| cut -d$'\t' -f2
 =cut
 
 
 # This will print "Hello, World"
-print "Hello, world\n"; 
+#print "Hello, world\n"; 
 my $tab = "\t";
 
-my $aux = "lsb_release -a | grep Description | cut -d'\t' -f2";
-my $output = system($aux);
-print $output;
+my $releaseOS = "lsb_release -a | grep Description | cut -d'\t' -f2";
+my $releaseOS_output = `$releaseOS`;
+print $releaseOS_output;
+exit();
