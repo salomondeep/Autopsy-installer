@@ -24,4 +24,7 @@ my $update_output = system($update);
 my $upgrade_output = system($upgrade);
 my $releaseOS_output = `$releaseOS`;
 print $releaseOS_output;
+
+
+
 exit();
