@@ -18,5 +18,5 @@ This is a private repository and is being maintained by [salomondeep](https://gi
 ## Updates
 **26th of March 2019** : creation of this repo.\
 **2nd of April 2019**: script can update&upgrade from the APT. Then installs lsb-core and outputs the release of the OS using. \
-**17th of May 2019**: script checks required packages to run perfectly.
-**21st of May 2019**: tests made with JAVA package.
+**17th of May 2019**: script checks required packages to run perfectly. \
+**21st of May 2019**: tests made with JAVA package. Additional package dependencies added. \
