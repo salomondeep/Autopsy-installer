@@ -25,7 +25,7 @@ my $install_gcc_command = "sudo apt-get install build-essential aptitude libstdc
 
 my $java_installer_script = "git clone https://github.com/chrishantha/install-java.git";
 my $check_unzip = "(dpkg-query -W -f='\${Status}' unzip 2>/dev/null | grep -c \"ok installed\")";
-my $check_java = "(dpkg-query -W -f='\${Status}' java 2>/dev/null | grep -c \"ok installed\")";
+my $check_java = "echo \$JAVA_HOME";
 my $check_git = "(dpkg-query -W -f='\${Status}' git 2>/dev/null | grep -c \"ok installed\")";
 my $check_curl = "(dpkg-query -W -f='\${Status}' curl 2>/dev/null | grep -c \"ok installed\")";
 my $check_testdisk = "(dpkg-query -W -f='\${Status}' testdisk 2>/dev/null | grep -c \"ok installed\")";
@@ -33,44 +33,44 @@ my $find_jdk = "find /home -name \"jdk*.tar.gz\" -size +20M | tr -d '\r\n'";
 #----------------------------------------------------------------------------------------
 
 
-# my $update_output = system($update);
-# my $upgrade_output = system($upgrade);
+my $update_output = system($update);
+my $upgrade_output = system($upgrade);
 
 
-# #---------------------- CHECK REQUIRED PACKAGES ------------------------------------------------------------------
+#---------------------- CHECK REQUIRED PACKAGES ------------------------------------------------------------------
 
-# my $check_unzip_output = `$check_unzip`;
-# if ($check_unzip_output == 0) {
-#     system($install_unzip_command);
-# }else{
-#     print "unzip is installed";
-# }
+my $check_unzip_output = `$check_unzip`;
+if ($check_unzip_output == 0) {
+    system($install_unzip_command);
+}else{
+    print "unzip is installed";
+}
 
-# my $check_curl_output = `$check_curl`;
-# if ($check_curl_output == 0) {
-#     system($install_curl_command);
-# }else{
-#     print "curl is installed";
-# }
+my $check_curl_output = `$check_curl`;
+if ($check_curl_output == 0) {
+    system($install_curl_command);
+}else{
+    print "curl is installed";
+}
 
-# my $check_git_output = `$check_git`;
-# if ($check_git_output == 0) {
-#     system($install_git_command);
-# }else{
-#     print "git is installed";
-# }
+my $check_git_output = `$check_git`;
+if ($check_git_output == 0) {
+    system($install_git_command);
+}else{
+    print "git is installed";
+}
 
-# system($install_gcc_command);
+system($install_gcc_command);
 
-# my $check_testdisk_output = `$check_testdisk`;
-# if ($check_testdisk_output == 0) {
-#     system($install_testdisk_command)
-# }else{
-#     print "testdisk is installed";
-# }
+my $check_testdisk_output = `$check_testdisk`;
+if ($check_testdisk_output == 0) {
+    system($install_testdisk_command)
+}else{
+    print "testdisk is installed";
+}
 
 my $check_java_output = `$check_java`; print $check_java_output;
-if ($check_java_output == 0){
+if ($check_java_output == null){
     #install here java
     system($java_installer_script); #works
 
@@ -82,12 +82,16 @@ if ($check_java_output == 0){
     system($aux);
 
     #step 3 -> move to the directory and execute the shell script #works
-    my $execute_script = "cd install-java/ && ./install-java.sh -f jdk-8u212-linux-x64.tar.gz && source ~/.bashrc && echo \$JAVA_HOME";
+    my $execute_script = "cd install-java/ && ./install-java.sh -f jdk-8u212-linux-x64.tar.gz";
     system($execute_script);
+    my $reload_bash = "exec bash";
+    system($reload_bash);
 
 } else{
     print "java is installed";
 }
+
+
 
 #----------------------------------------------------------------------------------------
 
