@@ -22,7 +22,9 @@ my $install_git_command = "sudo apt-get install git";
 my $java_installer_script = "git clone https://github.com/chrishantha/install-java.git";
 my $check_unzip = "(dpkg-query -W -f='\${Status}' unzip 2>/dev/null | grep -c \"ok installed\")";
 my $check_java = "(dpkg-query -W -f='\${Status}' java 2>/dev/null | grep -c \"ok installed\")";
-my $check_git = "(dpkg-query -W -f='\${Status}' git 2>/dev/null | grep -c \"ok installed\")";
+my $check_git = "(dpkg-query -W -f='\${Status}' git 2>/dev/null | grep -c \"ok installed\")";~
+
+my $find_jdk = "find /home -name \"jdk*.tar.gz\" -size +20M | tr -d '\r\n'";
 #----------------------------------------------------------------------------------------
 
 
@@ -43,8 +45,15 @@ if ($check_java_output == 0){
     #install here java
     system($java_installer_script);
 
-    #copy JDK from desktop to paste
-    my $copy_command = "sudo cp install-java/install-java.sh /home/Desktop";
+    #step 1 -> find where is jdk and store its path
+    my $find_jdk_output = `$find_jdk`;
+
+    #step 2 -> copy the jdk to the directory of the 
+    my $aux = "cp ". $find_jdk_output ." ./install-java";
+    system($aux);
+
+    #step 3 -> move to the directory and execute the shell script
+    my $execute_script = "cd install-java/ && ./install-java -f "
 
 } else{
     print "java is installed";
