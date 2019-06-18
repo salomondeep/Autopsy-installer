@@ -19,10 +19,13 @@ my $update = "sudo apt-get update";
 my $upgrade = "sudo apt-get upgrade";
 my $install_unzip_command = "sudo apt-get install unzip";
 my $install_git_command = "sudo apt-get install git";
+my $install_curl_command = "sudo apt-get install curl";
+my $install_gcc_command = "sudo apt-get install build-essential aptitude libstdc++6 gcc";
 my $java_installer_script = "git clone https://github.com/chrishantha/install-java.git";
 my $check_unzip = "(dpkg-query -W -f='\${Status}' unzip 2>/dev/null | grep -c \"ok installed\")";
 my $check_java = "(dpkg-query -W -f='\${Status}' java 2>/dev/null | grep -c \"ok installed\")";
-my $check_git = "(dpkg-query -W -f='\${Status}' git 2>/dev/null | grep -c \"ok installed\")";~
+my $check_git = "(dpkg-query -W -f='\${Status}' git 2>/dev/null | grep -c \"ok installed\")";
+my $check_curl = "(dpkg-query -W -f='\${Status}' curl 2>/dev/null | grep -c \"ok installed\")";
 
 my $find_jdk = "find /home -name \"jdk*.tar.gz\" -size +20M | tr -d '\r\n'";
 #----------------------------------------------------------------------------------------
@@ -37,8 +40,13 @@ my $upgrade_output = system($upgrade);
 my $check_unzip_output = `$check_unzip`;
 if ($check_unzip_output == 0) ? system($install_unzip_command) : print "unzip is installed";
 
+my $check_curl_output = `$check_curl`;
+if ($check_curl_output == 0) ? system($install_curl_command) : print "curl is installed";
+
 my $check_git_output = `$check_git`;
 if ($check_git_output == 0) ? system($install_git_command) : print "git is installed";
+
+system($install_gcc_command);
 
 my $check_java_output = `$check_java`;
 if ($check_java_output == 0){
