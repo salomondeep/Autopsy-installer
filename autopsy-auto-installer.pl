@@ -15,8 +15,8 @@ my $lsb_core_command = "sudo apt-get install lsb-core";
 my $username = "whoami";
 my $update = "sudo apt-get update";
 my $upgrade = "sudo apt-get upgrade";
-my $install_testdisk_command = "yes | sudo apt-get install testdisk";
-my $install_gcc_command = "yes | sudo apt-get install build-essential aptitude libstdc++6 gcc";
+my $install_testdisk_command = "sudo apt-get install testdisk";
+my $install_gcc_command = "sudo apt-get install build-essential aptitude libstdc++6 gcc";
 my $check_testdisk = "(dpkg-query -W -f='\${Status}' testdisk 2>/dev/null | grep -c \"ok installed\")";
 #----------------------------------------------------------------------------------------
 my $update_output = system($update);
@@ -37,5 +37,5 @@ system("yes | apt-get install ./sleuthkit-java_4.6.5-1_amd64.deb");
 # #step 5 download and install autopsy
 my $download_autopsy = "wget https://github.com/sleuthkit/autopsy/releases/download/autopsy-4.10.0/autopsy-4.10.0.zip";
 system($download_autopsy); #works
-system("unzip autopsy-4.10.0.zip && mv autopsy-4.10.0 /opt && cd /opt/autopsy-4.10.0 && sudo su && cd && source ~/etc/profile && sh /opt/autopsy-4.10.0/unix_setup.sh");
+system("unzip autopsy-4.10.0.zip && mv autopsy-4.10.0 /opt && cd && source ~/etc/profile && sh /opt/autopsy-4.10.0/unix_setup.sh");
 exit();
