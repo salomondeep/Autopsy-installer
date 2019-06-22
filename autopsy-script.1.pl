@@ -37,5 +37,5 @@ system("apt-get install ./sleuthkit-java_4.6.5-1_amd64.deb");
 # #step 5 download and install autopsy
 my $download_autopsy = "wget https://github.com/sleuthkit/autopsy/releases/download/autopsy-4.10.0/autopsy-4.10.0.zip";
 system($download_autopsy); #works
-system("unzip autopsy-4.10.0.zip && mv autopsy-4.10.0 /opt && cd /opt/autopsy-4.10.0 && sudo su && cd && source ~/etc/profile && sh /opt/autopsy-4.10.0/unix_setup.sh");
+system("unzip autopsy-4.10.0.zip && source /etc/profile && cd /opt/autopsy-4.10.0 && sh unix_setup.sh && mv ../autopsy-4.10.0 /opt");
 exit();
