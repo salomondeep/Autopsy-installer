@@ -65,7 +65,7 @@ if ($check_java_output == null){
     my $execute_script = "cd install-java/ && ./install-java.sh -f jdk-8u212-linux-x64.tar.gz";
     system($execute_script);
     system("echo \"export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_212\" >> ~/.bashrc");
-    system("echo \"export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_212\" >> ~/etc/profile");
+    system("cd && echo \"export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_212\" >> /etc/profile");
     my $reload_bash = "exec bash";
     system($reload_bash);
 } else{
