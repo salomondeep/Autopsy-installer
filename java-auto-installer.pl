@@ -25,10 +25,8 @@ my $check_git = "(dpkg-query -W -f='\${Status}' git 2>/dev/null | grep -c \"ok i
 my $check_curl = "(dpkg-query -W -f='\${Status}' curl 2>/dev/null | grep -c \"ok installed\")";
 my $find_jdk = "find /home -name \"jdk*.tar.gz\" -size +20M | tr -d '\r\n'";
 #----------------------------------------------------------------------------------------
-
 my $update_output = system($update);
 my $upgrade_output = system($upgrade);
-
 # #---------------------- CHECK REQUIRED PACKAGES ------------------------------------------------------------------
 my $check_unzip_output = `$check_unzip`;
 if ($check_unzip_output == 0) {
@@ -66,6 +64,8 @@ if ($check_java_output == null){
     #step 3 -> move to the directory and execute the shell script #works
     my $execute_script = "cd install-java/ && ./install-java.sh -f jdk-8u212-linux-x64.tar.gz";
     system($execute_script);
+    system("echo \"export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_212\" >> ~/.bashrc");
+    system("echo \"export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_212\" >> ~/etc/profile");
     my $reload_bash = "exec bash";
     system($reload_bash);
 } else{

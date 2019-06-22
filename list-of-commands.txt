@@ -1,8 +1,0 @@
-List of commands: 
-
-lsb_release -a | grep Description | cut -d$'\t' -f2 ------> finds the description of the installed linux distribution
-
-(dpkg-query -W -f='${Status}' nano 2>/dev/null | grep -c "ok installed") --------> checks if a package is installed.  
-                                                                                                                                                        returns 0 if not and 1 if it is.
-
-curl -s https://api.github.com/repos/sleuthkit/autopsy/releases/latest | grep "browser_download_url.*zip" | grep --invert-match "asc" | cut -d : -f 2,3 | tr -d \"
