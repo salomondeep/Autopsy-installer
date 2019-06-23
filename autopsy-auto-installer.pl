@@ -10,9 +10,6 @@ Autopsy: https://www.sleuthkit.org/autopsy/
 =cut
 
 #---------------------- VARIABLE DECLARATION ------------------------------------------------------------------
-my $lsb_core_command = "sudo apt-get install lsb-core";
-# my $releaseOS = "lsb_release -a | grep Description | cut -d'\t' -f2";
-my $username = "whoami";
 my $update = "sudo apt-get update";
 my $upgrade = "sudo apt-get upgrade";
 my $install_testdisk_command = "sudo apt-get install testdisk";
