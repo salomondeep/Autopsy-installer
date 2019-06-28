@@ -26,7 +26,6 @@ if ($check_testdisk_output == 0) {
 }else{
     print "testdisk is installed";
 }
-system("source ~/.bashrc");
 #step 4 download and install sleuthkit works
 my $download_sleuthkit = "wget https://github.com/sleuthkit/sleuthkit/releases/download/sleuthkit-4.6.5/sleuthkit-java_4.6.5-1_amd64.deb";
 system($download_sleuthkit);
@@ -34,5 +33,5 @@ system("yes | apt-get install ./sleuthkit-java_4.6.5-1_amd64.deb");
 # #step 5 download and install autopsy
 my $download_autopsy = "wget https://github.com/sleuthkit/autopsy/releases/download/autopsy-4.10.0/autopsy-4.10.0.zip";
 system($download_autopsy); #works
-system("unzip autopsy-4.10.0.zip && mv autopsy-4.10.0 /opt && cd && source /etc/profile && sh /opt/autopsy-4.10.0/unix_setup.sh");
+system("unzip autopsy-4.10.0.zip && mv autopsy-4.10.0 /opt && cd /opt/autopsy-4.10.0 && export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_212 && sh unix_setup.sh");
 exit();
